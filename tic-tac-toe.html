@@ -11,19 +11,63 @@
     <main class="grid">
         <h1>TIC TAC TOE</h1>
         <div id="gameBoard">
-            <div class="sqaure" id="0"></div>
-            <div class="sqaure" id="1"></div>
-            <div class="sqaure" id="2"></div>
-            <div class="sqaure" id="3"></div>
-            <div class="sqaure" id="4"></div>
-            <div class="sqaure" id="5"></div>
-            <div class="sqaure" id="6"></div>
-            <div class="sqaure" id="7"></div>
-            <div class="sqaure" id="8"></div>
+            <div class="square" id="square0"></div>
+            <div class="square" id="square1"></div>
+            <div class="square" id="square2"></div>
+            <div class="square" id="square3"></div>
+            <div class="square" id="square4"></div>
+            <div class="square" id="square5"></div>
+            <div class="square" id="square6"></div>
+            <div class="square" id="square7"></div>
+            <div class="square" id="square8"></div>
         </div>
     </main>
+<!-- <script src="./tic-tac-toe.js"></script> -->
+
 <script>
-    
+    var nextTurn = "X"
+    var squares = document.querySelectorAll('.square')
+    var gameBoard = document.querySelector('#gameBoard')
+    gameBoard.addEventListener("click", function(event) {
+        var clickedDiv = event.target
+        if (clickedDiv.innerText.trim() != "") {
+            return
+        } clickedDiv.innerText = nextTurn
+          changeTurn()
+          checkWin()
+        }
+    )
+    function changeTurn() {
+        if (nextTurn === "X") {
+            nextTurn = "O"
+        } else {
+            nextTurn = "X"
+        }
+    }
+    function checkWin() {
+            if (
+                (squares[0].innerText === squares[1].innerText && squares[1].innerText === squares[2].innerText && squares[0].innerText !== "") ||
+                (squares[3].innerText === squares[4].innerText && squares[4].innerText === squares[5].innerText && squares[3].innerText !== "") ||
+                (squares[6].innerText === squares[7].innerText && squares[7].innerText === squares[8].innerText && squares[6].innerText !== "") ||
+                (squares[0].innerText === squares[3].innerText && squares[3].innerText === squares[6].innerText && squares[0].innerText !== "") ||
+                (squares[1].innerText === squares[4].innerText && squares[4].innerText === squares[7].innerText && squares[1].innerText !== "") ||
+                (squares[2].innerText === squares[5].innerText && squares[5].innerText === squares[8].innerText && squares[2].innerText !== "") ||
+                (squares[0].innerText === squares[4].innerText && squares[4].innerText === squares[8].innerText && squares[0].innerText !== "") ||
+                (squares[2].innerText === squares[4].innerText && squares[4].innerText === squares[6].innerText && squares[2].innerText !== "")
+                ) {
+                if (nextTurn === "X") {
+                    alert("O wins!")
+                } else {
+                    alert("X wins!")
+                }
+                } else if (noSquaresLeft()) {
+                    alert("It's a tie!")
+                    resetBoard()
+                }
+                nextTurn = "X"
+            }
+        
+
 </script>
     
 </body>
