@@ -7,9 +7,14 @@ gameBoard.addEventListener("click", function(event) {
         return
     } clickedDiv.innerText = nextTurn
       changeTurn()
-      checkWin()
+    var winner = checkWin()
+    console.log(winner)
+    if (winner === 'X wins!' || winner === 'O wins!') {
+        document.querySelector(".winnerDisplay").innerText = winner
+    } else if (winner === 'Tie') {
+        document.querySelector(".winnerDisplay").innerText = "Tie!"
     }
-)
+})
 function changeTurn() {
     if (nextTurn === "X") {
         nextTurn = "O"
@@ -29,15 +34,16 @@ function checkWin() {
             (squares[2].innerText === squares[4].innerText && squares[4].innerText === squares[6].innerText && squares[2].innerText !== "")
             ) {
             if (nextTurn === "X") {
-                alert("O wins!")
+                return "O wins!"
             } else {
-                alert("X wins!")
+                return "X wins!"
             }
-            resetBoard()
-            }if (noSquaresLeft()) {
-                alert("It's a tie!")
-                resetBoard()
-            }
-            nextTurn = "X"
         }
+        for (var i = 0; i < squares.length; i++) {
+            if (squares[i].innerText === "") {
+                return;
+        }
+    }
+    return "Tie";
+}
     
