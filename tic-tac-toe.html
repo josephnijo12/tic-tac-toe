@@ -10,6 +10,7 @@
 <body>
     <main class="grid">
         <h1>TIC TAC TOE</h1>
+        <h2 class="winnerDisplay"></h2>
         <div id="gameBoard">
             <div class="square" id="square0"></div>
             <div class="square" id="square1"></div>
@@ -34,9 +35,13 @@
             return
         } clickedDiv.innerText = nextTurn
           changeTurn()
-          checkWin()
+        var winner = checkWin()
+        if (winner === 'X wins' || winner === 'O wins') {
+            document.querySelector(".winnerDisplay").innerText = winner
+        } else if (winner === 'Tie') {
+            document.querySelector(".winnerDisplay").innerText = "Tie!"
         }
-    )
+    })
     function changeTurn() {
         if (nextTurn === "X") {
             nextTurn = "O"
@@ -56,15 +61,13 @@
                 (squares[2].innerText === squares[4].innerText && squares[4].innerText === squares[6].innerText && squares[2].innerText !== "")
                 ) {
                 if (nextTurn === "X") {
-                    alert("O wins!")
+                    return "O wins!"
                 } else {
-                    alert("X wins!")
+                    return "X wins!"
                 }
-                } else if (noSquaresLeft()) {
-                    alert("It's a tie!")
-                    resetBoard()
-                }
+                } 
                 nextTurn = "X"
+                return "Tie"
             }
         
 
