@@ -36,7 +36,8 @@
         } clickedDiv.innerText = nextTurn
           changeTurn()
         var winner = checkWin()
-        if (winner === 'X wins' || winner === 'O wins') {
+        console.log(winner)
+        if (winner === 'X wins!' || winner === 'O wins!') {
             document.querySelector(".winnerDisplay").innerText = winner
         } else if (winner === 'Tie') {
             document.querySelector(".winnerDisplay").innerText = "Tie!"
@@ -65,10 +66,14 @@
                 } else {
                     return "X wins!"
                 }
-                } 
-                nextTurn = "X"
-                return "Tie"
             }
+            for (var i = 0; i < squares.length; i++) {
+                if (squares[i].innerText === "") {
+                    return;
+            }
+        }
+        return "Tie";
+    }
         
 
 </script>
