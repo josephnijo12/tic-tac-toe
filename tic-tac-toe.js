@@ -3,6 +3,7 @@ var squares = document.querySelectorAll('.square')
 var gameBoard = document.querySelector('#gameBoard')
 var XScore = 0
 var OScore = 0
+var playAgainButton = document.querySelector('#play-again')
 
 gameBoard.addEventListener("click", function (event) {
     var clickedDiv = event.target
@@ -14,9 +15,21 @@ gameBoard.addEventListener("click", function (event) {
     console.log(winner)
     if (winner === 'X wins!' || winner === 'O wins!') {
         document.querySelector(".winnerDisplay").innerText = winner
+        gameBoard.style.pointerEvents = "none"
+        playAgainButton.style.display = "block"
     } else if (winner === 'Tie') {
         document.querySelector(".winnerDisplay").innerText = "Tie!"
     }
+})
+
+playAgainButton.addEventListener('click', function () {
+    squares.forEach(square => {
+        square.innerText = "" //reset the board
+    })
+    nextTurn = "X" //reset the turn
+    document.querySelector(".winnerDisplay").innerText = "" //clear the winnerDisplay
+    playAgainButton.style.display = "none" //hide the button
+    gameBoard.style.pointerEvents = "auto" //enable clicks on the game board
 })
 
 function changeTurn() {
