@@ -1,5 +1,5 @@
 # tic-tac-toe
-### [Play tic-tac-toe](https://josephnijo12.github.io/tic-tac-toe)
+### [Play tic-tac-toe](https://josephnijo12.github.io/tic-tac-toe/)
 ABOUT
 This project is basically, a mulitplayer tic tac toe game, that allows the users to see who is the better tic tac toe player. To play this game all you need to do is click inside the assigned sqaures and take turns with X and O until its a tie or a player wins. 
 
